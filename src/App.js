@@ -1,13 +1,17 @@
 import React from "react";
-// import GlobalStyle from './globalStyles';
-// import Home from './pages/Home';
+import GlobalStyle from "./globalStyles";
+import HomePage from "./pages/HomePage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// import { Navbar, Footer } from './components';
+import { Navbar } from "./components/Navbar";
 
 function App() {
   return (
     <Router>
-      <h1>YO BIATCH</h1>
+      <GlobalStyle />
+      <Navbar />
+      <Switch>
+        <Route path='/' exact component={HomePage} />
+      </Switch>
     </Router>
   );
 }
