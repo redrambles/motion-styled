@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { FiMail } from "react-icons/fi";
 import {
@@ -13,9 +13,21 @@ import {
   CharacterContainer,
   HeroButton
 } from "./HeroStyles";
+import Modal from "../Modal/Modal";
 
 const Hero = () => {
+  const [showModal, setShowModal] = useState(false);
   const dragConstraints = { top: 0, bottom: 0, right: 0, left: 0 };
+
+  const toggleModal = () => {
+    if (!showModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "visible";
+    }
+    setShowModal(!showModal);
+  };
+
   const variants = {
     hover: {
       h: 15,
@@ -35,47 +47,50 @@ const Hero = () => {
   }, [inView]);
 
   return (
-    <HeroSection>
-      <HeroImage className='pattern' src='./images/hero-pattern-bg-lg.png' />
-      <HeroImage className='guy' src='./images/hero-guy-1.png' />
-      <CharacterContainer>
-        <ImageCharacter
-          className='one'
-          src='./images/image-1.png'
-          variants={variants}
-          whileHover='hover'
-          drag
-          dragConstraints={dragConstraints}
-        />
-        <ImageCharacter
-          className='two'
-          src='./images/image-2.png'
-          variants={variants}
-          whileHover='hover'
-          drag
-          dragConstraints={dragConstraints}
-        />
-        <ImageCharacter
-          className='three'
-          src='./images/image-3.png'
-          variants={variants}
-          whileHover='hover'
-          drag
-          dragConstraints={dragConstraints}
-        />
-      </CharacterContainer>
-      <HeroContent>
-        <Heading>We are Design Dynamics</Heading>
-        <HeroText>We are a creative agency that focuses on design, development, branding, and beautiful animations.</HeroText>
-        <ButtonContainer ref={ref}>
-          <ButtonWrapper>
-            <HeroButton className={inView ? "" : "corner"}>
-              {inView ? <>Chat with us</> : <FiMail color='white' size='2.2rem' />}
-            </HeroButton>
-          </ButtonWrapper>
-        </ButtonContainer>
-      </HeroContent>
-    </HeroSection>
+    <>
+      <HeroSection>
+        <HeroImage className='pattern' src='./images/hero-pattern-bg-lg.png' />
+        <HeroImage className='guy' src='./images/hero-guy-1.png' />
+        <CharacterContainer>
+          <ImageCharacter
+            className='one'
+            src='./images/image-1.png'
+            variants={variants}
+            whileHover='hover'
+            drag
+            dragConstraints={dragConstraints}
+          />
+          <ImageCharacter
+            className='two'
+            src='./images/image-2.png'
+            variants={variants}
+            whileHover='hover'
+            drag
+            dragConstraints={dragConstraints}
+          />
+          <ImageCharacter
+            className='three'
+            src='./images/image-3.png'
+            variants={variants}
+            whileHover='hover'
+            drag
+            dragConstraints={dragConstraints}
+          />
+        </CharacterContainer>
+        <HeroContent>
+          <Heading>We are Design Dynamics</Heading>
+          <HeroText>We are a creative agency that focuses on design, development, branding, and beautiful animations.</HeroText>
+          <ButtonContainer ref={ref}>
+            <ButtonWrapper>
+              <HeroButton onClick={toggleModal} className={inView ? "" : "corner"}>
+                {inView ? <>Chat with us</> : <FiMail color='white' size='2.2rem' />}
+              </HeroButton>
+            </ButtonWrapper>
+          </ButtonContainer>
+        </HeroContent>
+      </HeroSection>
+      <Modal showModal={showModal} toggleModal={toggleModal} />
+    </>
   );
 };
 

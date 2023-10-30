@@ -19,14 +19,14 @@ const Footer = () => {
       <FooterSubscription>
         <SocialLogo to='/'>
           <SocialIcon src='./images/logo.svg' />
-          esignify
+          esign Dynamics
         </SocialLogo>
         <FooterSubHeading>Interested working with us?</FooterSubHeading>
       </FooterSubscription>
 
       <SocialMedia>
         <SocialMediaWrap>
-          <WebsiteRights>© Copyright 2021, Designify. All Rights Reserved</WebsiteRights>
+          <WebsiteRights>© Copyright {new Date().getFullYear()}, Designify. All Rights Reserved</WebsiteRights>
           <SocialIcons>
             <SocialIconLink href='/' target='blank' aria-label='Facebook'>
               <FaFacebook />

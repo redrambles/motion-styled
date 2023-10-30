@@ -6,6 +6,7 @@ import { Heading } from "../globalStyles";
 import Content from "../components/Content/Content";
 import { Features } from "../components/Features";
 import { Clients } from "../components/Clients";
+import { Footer } from "../components/Footer";
 
 const HomePage = () => {
   const location = useLocation();
@@ -33,6 +34,7 @@ const HomePage = () => {
       <Content {...heroTwo} />
       <Content {...heroThree} />
       <Content {...heroFour} />
+      <Footer />
     </>
   );
 };
